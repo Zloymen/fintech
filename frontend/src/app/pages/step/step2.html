@@ -1,0 +1,18 @@
+<div layout="column" flex>
+
+    <div flex layout="column" layout-align="center center">
+        <div>
+            <div>Вы заказали билеты на фильм: <span class="bold">{{savedReservation.film.name}}</span></div>
+            <div>Ваш сеанс состоится <span class="bold">{{savedReservation.day | date}}</span> в {{savedReservation.session.name}}</div>
+            <div>Ваши места: <span class="bold">{{savedReservation.strPlaces}}</span></div>
+        </div>
+
+
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <md-button ng-click="cancel()">отмена</md-button>
+        <md-button ng-click="pay()">Оплатить</md-button>
+
+    </div>
+</div>

@@ -1,0 +1,139 @@
+// Layout
+$layout-breakpoint-xs: 600px !default;
+$layout-breakpoint-sm: 960px !default;
+$layout-breakpoint-md: 1280px !default;
+$layout-breakpoint-lg: 1920px !default;
+
+@mixin media-query($media, $orientation: null) {
+  @if $media == xs or $media == lr-xs {
+    @if ($orientation) {
+      @media screen and (max-width: $layout-breakpoint-xs - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $layout-breakpoint-xs - 1) {
+        @content;
+      }
+    }
+  } @else if $media == gt-xs {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-xs) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-xs) {
+        @content;
+      }
+    }
+  } @else if $media == sm {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) {
+        @content;
+      }
+    }
+  } @else if $media == lr-sm {
+    @if ($orientation) {
+      @media screen and (max-width: $layout-breakpoint-sm - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $layout-breakpoint-sm - 1) {
+        @content;
+      }
+    }
+  } @else if $media == gt-sm {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-sm) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-sm) {
+        @content;
+      }
+    }
+  } @else if $media == md {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) {
+        @content;
+      }
+    }
+  } @else if $media == lr-md {
+    @if ($orientation) {
+      @media screen and (max-width: $layout-breakpoint-md - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $layout-breakpoint-md - 1) {
+        @content;
+      }
+    }
+  } @else if $media == gt-md {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-md) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-md) {
+        @content;
+      }
+    }
+  } @else if $media == lg {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
+        @content;
+      }
+    }
+  } @else if $media == lr-lg or $media == lr-xl {
+    @if ($orientation) {
+      @media screen and (max-width: $layout-breakpoint-lg - 1) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $layout-breakpoint-lg - 1) {
+        @content;
+      }
+    }
+  } @else if $media == gt-lg {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-lg) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-lg) {
+        @content;
+      }
+    }
+  } @else if $media == xl or $media == gt-xl {
+    @if ($orientation) {
+      @media screen and (min-width: $layout-breakpoint-lg) and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: $layout-breakpoint-lg) {
+        @content;
+      }
+    }
+  } @else {
+    @if ($orientation) {
+      @media screen and (orientation: $orientation) {
+        @content;
+      }
+    } @else {
+      @media screen {
+        @content;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+
+captcha {
+  width: 100%;
+}
+
+.captcha-box {
+
+  &__img {
+
+    height: 150px;
+    border: 0 ! important;
+    outline-color: transparent !important;
+
+    &:hover, &:focus, &:active {
+      border: 0 ! important;
+      outline-color: transparent !important;
+    }
+
+  }
+
+  &__description {
+    color: silver;
+    padding-top: 10px;
+  }
+
+}

@@ -1,0 +1,8 @@
+<md-input-container ng-controller="CaptchaController as captchaCtrl" layout="row" class="md-block flex-100 captcha-box">
+    <span class="layout-column layout-align-center-center flex-100 ">
+        <img class="captcha-box__img"
+             ng-src="{{captchaCtrl.captchaUrl}}"
+             ng-click="captchaCtrl.updateCaptcha($event)"/>
+        <small class="captcha-box__description">click to the Captcha image for update</small>
+    </span>
+</md-input-container>

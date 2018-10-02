@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet author="zloy" id="1">
+        <comment>
+            add table films
+        </comment>
+        <createTable tableName="films">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="film_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zloy" id="2">
+        <comment>
+            add table places
+        </comment>
+        <createTable tableName="places">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="place_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zloy" id="3">
+        <comment>
+            add table sessions
+        </comment>
+        <createTable tableName="sessions">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="session_pkey"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ord" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zloy" id="4">
+        <comment>
+            add data catalogs
+        </comment>
+        <sql>
+            insert into sessions (name, ord)values
+                ('10:15', 0), ('11:25', 1), ('12:30', 2), ('13:40', 3), ('14:45', 4), ('17:00', 5), ('18:10', 6),
+                ('19:15', 7), ('20:25', 8), ('21:30', 9);
+            insert into films(name)values('Тайна дома с часами'), ('Непрощённый'), ('Проклятие монахини'), ('Агент Джонни Инглиш 3.0'),
+                ('Поиск'), ('Простая просьба'), ('Хищник'), ('Профессионал'), ('Большой кошачий побег'),('Мотылёк'), ('Руби и Повелитель воды'),
+                ('Temporary Difficulties'), ('Лондонские поля'), ('Монстры на каникулах 3: Море зовёт'), ('Храброе сердце. Заговор в королевстве'),
+                ('Гоголь. Страшная месть'), ('Альфа'), ('Великий уравнитель 2');
+            insert into places(name)values
+                ('1'), ('2'), ('3'), ('4'), ('5'), ('6'), ('7'), ('8'), ('9'), ('10'),
+                ('11'), ('12'), ('13'), ('14'), ('15'), ('16'), ('17'), ('18'), ('19'), ('20'),
+                ('21'), ('22'), ('23'), ('24'), ('25'), ('26'), ('27'), ('28'), ('29'), ('30');
+        </sql>
+    </changeSet>
+
+    <changeSet author="zloy" id="5">
+        <comment>
+            add table orders
+        </comment>
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="order_pkey"/>
+            </column>
+            <column name="phone" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="film_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="session_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="film_id" constraintName="order_films_fk"
+                                 referencedTableName="films" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="session_id" constraintName="order_sessions_fk"
+                                 referencedTableName="sessions" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="zloy" id="6">
+        <comment>
+            add table order_place
+        </comment>
+        <createTable tableName="order_place">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="orderPlace_pkey"/>
+            </column>
+            <column name="order_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="order_place" baseColumnNames="order_id" constraintName="orderPlace_orders_fk"
+                                 referencedTableName="orders" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="order_place" baseColumnNames="place_id" constraintName="orderPlace_places_fk"
+                                 referencedTableName="places" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="zloy" id="7">
+        <comment>
+            add table reservation
+        </comment>
+        <createTable tableName="reservations">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="reservations_pkey"/>
+            </column>
+            <column name="user_session_id" type="TEXT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="day" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="film_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="session_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="reservations" baseColumnNames="film_id" constraintName="reservations_films_fk"
+                                 referencedTableName="films" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="reservations" baseColumnNames="session_id" constraintName="reservations_sessions_fk"
+                                 referencedTableName="sessions" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="zloy" id="8">
+        <comment>
+            add table reservation_place
+        </comment>
+        <createTable tableName="reservation_place">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="reservationPlace_pkey"/>
+            </column>
+            <column name="reservation_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="reservation_place" baseColumnNames="reservation_id" constraintName="reservationPlace_reservation_fk"
+                                 referencedTableName="reservations" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="reservation_place" baseColumnNames="place_id" constraintName="reservationPlace_places_fk"
+                                 referencedTableName="places" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="zloy" id="9">
+        <comment>
+            add column phone table reservations
+        </comment>
+        <addColumn tableName="reservations">
+            <column name="phone" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

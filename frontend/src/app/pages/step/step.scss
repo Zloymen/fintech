@@ -1,0 +1,37 @@
+.step {
+
+  .bold{
+    font-weight:bold;
+  }
+
+  .not-shadow{
+    md-input-container{
+      input{
+        color: black;
+      }
+    }
+  }
+
+  &__menu {
+
+    min-width: 333px;
+    margin-bottom: 30px;
+
+    a, a:visited, a:active {
+      font-weight: normal;
+      font-variant: small-caps;
+      color: $primary-color;
+    }
+
+  }
+
+  &__body {
+
+    div, p {
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+}

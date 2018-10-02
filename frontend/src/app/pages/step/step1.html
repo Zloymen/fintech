@@ -1,0 +1,76 @@
+<form name="reservationForm" layout="column" flex>
+    <div flex layout="column">
+        <md-input-container flex >
+            <label>Номер телефона</label>
+            <input  name="phone" ng-model="reservation.phone" required />
+        </md-input-container>
+
+        <md-input-container flex>
+            <md-autocomplete class="margin-right10 not-shadow"
+                             md-selected-item="reservation.film"
+                             md-search-text-change="onChange(search)"
+                             md-search-text="search"
+                             md-selected-item-change="change(item)"
+                             md-items="item in query(search)"
+                             md-item-text="item.name"
+                             md-floating-label="Фильм"
+                             required
+
+            >
+                <!--                             md-menu-class="autocomplete-custom-template"
+                             md-menu-container-class="custom-container"-->
+                <md-item-template>
+                <span class="item-title">
+                    Фильм: <span> {{item.name}} </span>
+                </span>
+                </md-item-template>
+                <md-not-found>
+                    Фильм "{{search}}" не найден.
+                </md-not-found>
+            </md-autocomplete>
+        </md-input-container>
+
+        <div flex layout="row" >
+            <md-input-container flex="50">
+                <label>Дата</label>
+                <md-datepicker ng-model="reservation.day" md-placeholder="Enter date" required ></md-datepicker>
+            </md-input-container>
+            <md-input-container flex="50">
+                <label>Сеанс</label>
+                <md-select name="paidPeriod"
+                           required
+                           aria-label="Сеанс"
+                           md-floating-label="Сеанс"
+                           ng-model="reservation.session"
+                           ng-model-options="{trackBy: '$value'}"
+                >
+                    <md-optgroup label="Сеанс">
+                        <md-option ng-repeat="session in catalogs.sessions" value="{{session.id}}">
+                            {{session.name}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+
+        </div>
+
+
+        <fieldset class="standard" ng-disabled="reservationForm.$invalid">
+            <legend>Места </legend>
+            <div layout="row" layout-wrap flex>
+                <div flex="10" ng-repeat="item in catalogs.places">
+                    <md-checkbox ng-disabled="item.disable || reservationForm.$invalid" ng-checked="exists(item.id, reservation.places)" ng-click="toggle(item.id, reservation.places)">
+                        {{ item.name }}
+                    </md-checkbox>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div layout="row" layout-align="center center">
+        <md-button ng-click="cancel()">Главная</md-button>
+        <md-button ng-click="reserved()" ng-disabled="(reservationForm.$invalid || reservation.places.length == 0)">Купить</md-button>
+
+    </div>
+</form>

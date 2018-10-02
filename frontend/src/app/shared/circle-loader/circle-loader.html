@@ -1,0 +1,5 @@
+<div class="circle-loader__layout layout-column layout-align-center-center" ng-if="showCircleLoader">
+    <md-progress-circular class="md-primary" md-mode="indeterminate"></md-progress-circular>
+    <div class="md-headline circle-loader__message"
+         ng-bind-html='circleLoaderMessage ? circleLoaderMessage + "&hellip;" : "Loading&hellip;"'></div>
+</div>

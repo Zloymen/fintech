@@ -1,0 +1,22 @@
+.logo {
+  //font-size: 32px;
+  //color: #082547;
+  //width: 100%;
+  max-width: 400px;
+  min-width: 200px;
+  //margin-bottom: 28px;
+  &__bg {
+    width: 96% !important;
+    //min-height: 100px !important;
+    display: block;
+    //border: 1px solid #dfdfdf;
+    border: 1px outset white;
+    //padding:5px;
+    margin: auto;
+    background-color: white !important;
+  }
+  &__title {
+    font-family: $family-roboto-slab;
+    font-weight: bold;
+  }
+}

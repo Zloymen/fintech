@@ -1,0 +1,22 @@
+// Fonts
+$family-roboto: "Roboto", Helvetica Neue, Helvetica, Arial sans-serif;
+$family-roboto-slab: "Roboto Slab", "Roboto", Helvetica Neue, Helvetica, Arial sans-serif;
+
+$md-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+
+$transition-duration: .4s;
+$transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+// Colors
+//$primary-color: #3f51b5;
+//$accent-color: #e91e63;
+
+$primary-color: #23b8a6;
+$custom-theme-primary: #23b8a6;
+
+$accent-color: #e91e63;
+$custom-theme-accent: mat-palette($accent-color, A200, A100, A400);
+
+$mat-red: red;
+$warn-color: $mat-red;
+$custom-theme-warn: mat-palette($mat-red, A200, A100, A400);

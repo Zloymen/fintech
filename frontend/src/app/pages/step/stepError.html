@@ -1,0 +1,16 @@
+<div layout="column" flex>
+
+    <div flex layout="column" layout-align="center center">
+        <div>
+            <div>Произошла ошибка!</div>
+            <div>{{errMsg}}</div>
+            <div ng-if="uid">uid:<span class="bold">{{uid}} </span></div>
+        </div>
+
+
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <md-button ng-click="cancel()">отмена</md-button>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.circle-loader {
+  &__layout {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    background-color: rgba(255, 255, 255, .9);
+    &.ng-hide-add {
+      animation-name: fadeOut;
+      animation-duration: $transition-duration;
+    }
+    &.ng-hide-remove {
+      animation-name: fadeIn;
+      animation-duration: $transition-duration;
+    }
+  }
+  &__message {
+    margin-top: 18px;
+  }
+}
