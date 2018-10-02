@@ -1,0 +1,17 @@
+version: '2'
+services:
+    citydom-app:
+        image: fintech/test:latest
+        #build: .
+        depends_on:
+            - platiza-postgresql
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://platiza-postgresql:5432/platiza
+            - SPRING_DATASOURCE_USERNAME=platiza
+            - SPRING_DATASOURCE_PASSWORD=platiza
+        ports:
+            - 8081:9090
+    platiza-postgresql:
+        extends:
+            file: postgresql.yml
+            service: platiza-postgresql

@@ -8,12 +8,12 @@
 
         let stepCtrl = this;
 
-        //$scope.reservation = {phone: null, film: null, places:[]};
-        $scope.reservation = {
+        $scope.reservation = {phone: null, film: null, places:[], day: new Date(),};
+/*        $scope.reservation = {
             film: {id: 12, name: "Temporary Difficulties"},
             phone: "11111", day: new Date(),
             session: "3", places: []
-        };
+        };*/
 
         $scope.toggle = function (item, list) {
             let idx = list.indexOf(item);

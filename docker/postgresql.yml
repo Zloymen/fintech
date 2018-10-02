@@ -1,0 +1,10 @@
+version: '2'
+services:
+    platiza-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=platiza
+            - POSTGRES_PASSWORD=platiza
+            - POSTGRES_DB=platiza
+        ports:
+            - 5431:5432

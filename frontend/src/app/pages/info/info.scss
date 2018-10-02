@@ -1,0 +1,29 @@
+
+.info {
+
+  .md-whiteframe-z1{
+    box-shadow: none;
+  }
+
+  md-autocomplete{
+    background: none;
+  }
+
+  .md-datepicker-input{
+    max-width: none;
+  }
+
+
+  .md-datepicker-input-container{
+    width: 100%;
+    margin-left: unset;
+  }
+
+  .ui-grid-icon-angle-down::before{
+    content: unset;
+  }
+
+  .ui-grid-icon-ok:before{
+    content: unset;
+  }
+}

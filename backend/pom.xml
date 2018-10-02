@@ -68,17 +68,19 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-<!--            <plugin>
+
+            <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.3.6</version>
                 <configuration>
-                    <dao>${docker.image.prefix}/${project.artifactId}</dao>
+                    <repository>fintech/test</repository>
                     <buildArgs>
-                        <JAR_FILE>target/${project.name}.jar</JAR_FILE>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
-            </plugin>-->
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -100,6 +102,32 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/src/main/resources/static</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${basedir}/src/main/resources/static/assets</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${basedir}/src/main/resources/static/app</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${basedir}/src/main/resources/static</directory>
+                            <includes>
+                                <include>
+                                    index.html
+                                </include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
 
         </plugins>

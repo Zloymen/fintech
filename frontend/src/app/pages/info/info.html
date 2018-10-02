@@ -1,0 +1,68 @@
+<div layout="column" flex class="info">
+
+    <div layout="column" >
+        <div flex layout="row">
+            <md-input-container flex="40">
+
+                <label>Фильм</label>
+                <md-autocomplete class="margin-right10 not-shadow"
+                                 md-selected-item="film"
+                                 md-search-text-change="onChange(search)"
+                                 md-search-text="search"
+                                 md-selected-item-change="change(item)"
+                                 md-items="item in query(search)"
+                                 md-item-text="item.name"
+                                 required>
+                    <!--  md-floating-label="Фильм"
+                         md-menu-class="autocomplete-custom-template"
+                                 md-menu-container-class="custom-container"-->
+                    <md-item-template>
+                                <span class="item-title">
+                                    Фильм: <span> {{item.name}} </span>
+                                </span>
+                    </md-item-template>
+                    <md-not-found>
+                        Фильм "{{search}}" не найден.
+                    </md-not-found>
+                </md-autocomplete>
+            </md-input-container>
+
+            <md-input-container flex="40">
+                <label style="right:unset">Дата</label>
+                <md-datepicker ng-model="day" md-placeholder="Enter date" required ></md-datepicker>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Сеанс</label>
+                <md-select required
+                           ng-model="session"
+                           ng-model-options="{trackBy: '$value'}"
+                >
+                    <md-optgroup label="Сеанс">
+                        <md-option ng-repeat="item in catalogs.sessions" value="{{item.id}}">
+                            {{item.name}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+            <div>
+                <md-button ng-click="find()" ng-disabled="!session || !day || !film">поиск</md-button>
+                <md-button ng-click="clear()">очистить</md-button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div flex layout="column" >
+
+        <div ui-grid="gridOptions" class="grid" ui-grid-selection ui-grid-auto-resize flex style="height: 97%;"> </div>
+
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <md-button ng-click="main()">главная</md-button>
+    </div>
+</div>
