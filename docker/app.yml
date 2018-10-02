@@ -10,7 +10,7 @@ services:
             - SPRING_DATASOURCE_USERNAME=platiza
             - SPRING_DATASOURCE_PASSWORD=platiza
         ports:
-            - 8081:9090
+            - 9090:9090
     platiza-postgresql:
         extends:
             file: postgresql.yml
